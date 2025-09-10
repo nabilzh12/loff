@@ -1,5 +1,6 @@
 const display = document.querySelector("#display");
 const buttons = document.querySelectorAll("button");
+
 buttons.forEach((item) => {
   item.onclick = () => {
     if (item.id == "clear") {
@@ -9,6 +10,21 @@ buttons.forEach((item) => {
       display.innerText = string.substr(0, string.length - 1);
     } else if (display.innerText != "" && item.id == "equal") {
       display.innerText = "i love u azizah";
+
+      // Buat elemen span untuk emoji love
+      const loveEmoji = document.createElement("span");
+      loveEmoji.innerText = "❤️";
+      loveEmoji.classList.add("love-emoji");
+
+      // Tambahkan emoji ke dalam display
+      display.appendChild(loveEmoji);
+
+      // Hapus emoji setelah animasi selesai (3 detik)
+      setTimeout(() => {
+        if (display.contains(loveEmoji)) {
+          display.removeChild(loveEmoji);
+        }
+      }, 3000);
     } else if (display.innerText == "" && item.id == "equal") {
       display.innerText = "Empty!";
       setTimeout(() => (display.innerText = ""), 2000);
@@ -27,3 +43,4 @@ themeToggleBtn.onclick = () => {
   themeToggleBtn.classList.toggle("active");
   isDark = !isDark;
 };
+
